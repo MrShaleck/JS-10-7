@@ -27,7 +27,6 @@ pickRock.addEventListener('click', function() { playerPick('rock') });
 pickPaper.addEventListener('click', function() { playerPick('paper') });
 pickScissors.addEventListener('click', function() { playerPick('scissors') });
 
-setGameElements();
 
 function setGameElements() {
     switch(gameState) {
@@ -53,14 +52,16 @@ function newGame() {
         player.score = computer.score = 0;
         gameState = 'started';
         setGameElements();
+        setGamePoints();
 
         playerNameElem.innerHTML = player.name;
-        function setGamePoints() {
-            playerPointsElem.innerHTML = player.score;
-            computerPointsElem.innerHTML = computer.score;
-        }
+
     }
 
+}
+function setGamePoints() {
+    playerPointsElem.innerHTML = player.score;
+    computerPointsElem.innerHTML = computer.score;
 }
 
 
@@ -94,7 +95,7 @@ function checkRoundWinner(playerPick, computerPick) {
         computer.score++;
     }
 
-    setGameElements();
+    setGamePoints();
     checkIsEndGame();
 }
 
